@@ -1,0 +1,60 @@
+<div class="container" ng-controller="messageController">
+    <br>
+    <div class="page-header">
+        <h1>{{messages[0].threadn}}</h1>
+    </div>
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">{{messages[0].threadn}}</h3>
+        </div>
+
+        <div class="panel-body">
+
+            <div class="panel panel-default panel-primary message" ng-repeat="message in messages">
+                <div class="panel-heading message__heading">
+                    <h3 class="panel-title" >{{message.usern}} with email: {{message.email}} wrote: on {{message.created_at}}</h3>
+                </div>
+                <div class="panel-body message__body">
+                    <p>{{ message.text }}</p>
+                    <a href="#" ng-click="deleteMessage(message.id, message.id_thread)" class="btn btn-danger" role="button">Delete</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <h3 class="panel-title">Write new comment: {{messages.id_thread}}</h3>
+        </div>
+
+        <div class="panel-body">
+            <form ng-submit="submitMessage()"> <!-- ng-submit will disable the default form action and use our function -->
+                <!-- THREAD -->
+                <div class="form-group">
+                    <input type="hidden" class="form-control input-sm" name="id_user" ng-model="messageData.id_user" >
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" class="form-control input-sm" name="id_thread" ng-model="messageData.id_thread">
+                </div>
+
+                <!-- COMMENT TEXT -->
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" name="message" ng-model="messageData.text" placeholder="Write your message" required>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary btn-lg submit-btn">Submit</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
